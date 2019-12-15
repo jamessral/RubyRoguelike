@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative "./printing"
+
 class Roguelike
   attr_reader :should_exit
   attr_accessor :score
@@ -14,15 +16,16 @@ class Roguelike
   end
 
   def run
-    puts "========="
-    puts "Welcome to the Ruby Roguelike"
-    puts "========="
-    4.times { puts "" }
+    Printing.clear_screen
+    Printing.banner_line("=")
+    Printing.center_text("Welcome to Ruby Roguelike")
+    Printing.banner_line("=")
+    Printing.vertical_padding row_offset: 4
 
     loop do
       break if should_exit
 
-      print ">> "
+      Printing.print_prompt
       command = gets.chomp
       eval_command command
     end
@@ -35,6 +38,10 @@ class Roguelike
       quit_game!
     when "quit"
       quit_game!
+    when "clear"
+      Printing.clear_screen
+    when "cls"
+      Printing.clear_screen
     else
       puts "I don't know how to #{c}"
     end
