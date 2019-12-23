@@ -20,18 +20,18 @@ class Roguelike
     Printing.banner_line("=")
     Printing.center_text("Welcome to Ruby Roguelike")
     Printing.banner_line("=")
-    Printing.vertical_padding row_offset: 4
+    Printing.vertical_padding(row_offset: 4)
 
     loop do
       break if should_exit
 
       Printing.print_prompt
       command = gets.chomp
-      eval_command command
+      eval_command(command)
     end
   end
 
-  def eval_command command
+  def eval_command(command)
     c = command.downcase
     case c
     when "exit"

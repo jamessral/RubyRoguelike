@@ -4,7 +4,7 @@ require "io/console"
 require_relative "./ansi"
 
 module Printing
-  def self.banner_line char
+  def self.banner_line(char)
     terminal_width.times { print char }
     puts ""
   end
@@ -32,7 +32,7 @@ module Printing
     cols
   end
 
-  def self.print_prompt prompt = ">>"
+  def self.print_prompt(prompt = ">>")
     print "#{prompt} "
   end
 
@@ -40,7 +40,7 @@ module Printing
     print Ansi.clear_screen
   end
 
-  def self.vertical_padding row_offset: 0
+  def self.vertical_padding(row_offset: 0)
     newlines = ""
     (terminal_height - row_offset).times { newlines += "\n" }
     print newlines
